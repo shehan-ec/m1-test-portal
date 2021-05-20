@@ -62,17 +62,25 @@
 
            </div>
 
-           <!-- <div>
+           <div>
                <h2>3. Control Outcome</h2>
                <form>
-                   <input name="override_security_check" id="override_security_check" type="checkbox" indeterminate/>
-                   <label style="display: inline;" for="override_security_check">
+                   <input name="fail_signature" id="fail_signature" type="checkbox" indeterminate/>
+                   <label style="display: inline;" for="fail_signature">
                     Force Fail Security Check</label><br/>
-                    <input name="malformed_url" id="malformed_url" type="checkbox" indeterminate/>
-                    <label style="display: inline-flex;" for="malformed_url">
-                        Force Malformed URL</label>
+
+                    <input id="custom_timestamp_check" type="checkbox"/>
+                    <label style="" for="custom_timestamp">Override Date</label> 
+                    <input id="custom_timestamp_value" type="date"/><br/>
+                    
+                    <input name="custom_url" id="custom_url" type="checkbox" indeterminate/>
+                    <label style="display: inline-flex;" for="custom_url">Force Custom URL</label><br/>
+
+                    <input name="custom_local_check" id="custom_local_check" type="checkbox" indeterminate/>
+                    <label style="display: inline-flex;" for="custom_local_check">Force Localhost</label>
+                    <input id="custom_local_port" type="number" value="3000" placeholder="port"/><br/>
                 </form>
-           </div> -->
+           </div>
 
         </div>
         <div class="checkout">
@@ -87,7 +95,8 @@
         <script>
             const textarea = document.getElementById('console');
             console.print = function(e){
-                textarea.value += e.toString();
+                textarea.value += e.toString() + '\n';
+                textarea.scrollTop = textarea.scrollHeight;
             }
         </script>
         <script src="product.js"></script>
