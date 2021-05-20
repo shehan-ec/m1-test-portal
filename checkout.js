@@ -36,10 +36,12 @@ function run() {
         }
         console.print("Request Signature: " +  signature + '\n');
         
+        let url;
+        url = configuration.endpoint + '?';
+
         if(custom_localhost_check.checked){
-            configuration.endpoint = "http://localhost:" + custom_localhost_port.value
+            url = "http://localhost:" + custom_localhost_port.value +'?'
         }
-        let url = configuration.endpoint + '?';
         url += "merchant=" + merchant.value + "&";
         url += "total=" + order.total + "&";
         url += "timestamp=" + date.getTime() + "&";
@@ -47,7 +49,7 @@ function run() {
         if(order.items){
             url += "items=" + encodeURIComponent(JSON.stringify(Object.values(order.items))) + "&";
         }
-
+        console.log(custom_url.checked)
         if(custom_url_check.checked){
             url = prompt('Edit URL',url)
         }
