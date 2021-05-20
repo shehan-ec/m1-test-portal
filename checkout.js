@@ -59,8 +59,7 @@ function run() {
         console.print('Generated URL: \n ' + url + "_blank" ,`height=800,width=380,left=${left} \n`)
         var popup = window.open(url, "_blank" ,`height=800,width=380,left=${left}`);
         popup.onclose = function(){console.print("Popup Closed")};
-        order.items ={};
-        order.total = 0;
+    
     })
     .catch(console.print)
 
