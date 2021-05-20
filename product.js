@@ -42,5 +42,5 @@ function addProduct(e) {
     order.total += totalVal;
     row.append(id,name,qty,price,total,del);
     prodTable.appendChild(row);
-    console.print('Added Product: \n');
+    console.print('Added Product \n');
 }

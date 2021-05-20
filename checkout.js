@@ -4,16 +4,41 @@ const configuration= {
 }
 
 var secret = document.getElementById('merchant-secret');
-var merchant = document.getElementById('merchant-selector')
+var merchant = document.getElementById('merchant-selector');
+
+var fail_signature = document.getElementById('fail_signature');
+
+var custom_timestamp_check = document.getElementById('custom_timestamp_check');
+var custom_timestamp_value = document.getElementById('custom_timestamp_value');
+var custom_url_check = document.getElementById('custom_url');
+
+var custom_localhost_check = document.getElementById('custom_local_check');
+var custom_localhost_port = document.getElementById('custom_local_port');
+
 var total = order.total;
 
 
 function run() {
     configuration['secret'] = secret.value;
     let date = new Date();
+
+
+    if(custom_timestamp_check.checked){
+        date = new Date(custom_timestamp_value.value)
+        console.print("Overriding Date to: " + date + '\n');
+    }
+
     sign(configuration,total,merchant.value,date)
     .then(signature=>{
+        if(fail_signature.checked){
+            console.print("Force Failing Signature")
+            signature = "FAIL_SECRET";
+        }
         console.print("Request Signature: " +  signature + '\n');
+        
+        if(custom_localhost_check.checked){
+            configuration.endpoint = "http://localhost:" + custom_localhost_port.value
+        }
         let url = configuration.endpoint + '?';
         url += "merchant=" + merchant.value + "&";
         url += "total=" + order.total + "&";
@@ -22,10 +47,14 @@ function run() {
         if(order.items){
             url += "items=" + encodeURIComponent(JSON.stringify(Object.values(order.items))) + "&";
         }
+
+        if(custom_url_check.checked){
+            url = prompt('Edit URL',url)
+        }
         
         url += "hmac=" + signature;
         let left = window.innerWidth/2 - 190
-        console.print('Generated URL: \n ' + url + "_blank" ,`height=800,width=380,left=${left}`)
+        console.print('Generated URL: \n ' + url + "_blank" ,`height=800,width=380,left=${left} \n`)
         var popup = window.open(url, "_blank" ,`height=800,width=380,left=${left}`);
         popup.onclose = function(){console.print("Popup Closed")};
         order.items ={};
