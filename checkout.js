@@ -58,8 +58,16 @@ function run() {
         let left = window.innerWidth/2 - 190
         console.print('Generated URL: \n ' + url + "_blank" ,`height=800,width=380,left=${left} \n`)
         var popup = window.open(url, "_blank" ,`height=800,width=380,left=${left}`);
-        popup.onclose = function(){console.print("Popup Closed")};
-    
+        console.print('\nTesting',true);
+        var timer = setInterval(function(){
+            if(popup.closed){
+                console.print('\nPopup Closed.******************************************* \n')
+                clearInterval(timer);
+            }else{
+                console.print(".",true)
+            }
+        },1000)
+        
     })
     .catch(console.print)
 
