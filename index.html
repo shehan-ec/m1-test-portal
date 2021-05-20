@@ -92,7 +92,7 @@
         <script>
             const textarea = document.getElementById('console');
             console.print = function(e){
-                textarea.value += e.toString();
+                textarea.value += e.toString() + '\n';
                 textarea.scrollTop = textarea.scrollHeight;
             }
         </script>

@@ -31,7 +31,7 @@ function run() {
     sign(configuration,total,merchant.value,date)
     .then(signature=>{
         if(fail_signature.checked){
-            console.print("Force Failing Signature")
+            console.print("Force Failing Signature \n")
             signature = "FAIL_SECRET";
         }
         console.print("Request Signature: " +  signature + '\n');
