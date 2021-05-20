@@ -40,7 +40,7 @@ function run() {
         url = configuration.endpoint + '?';
 
         if(custom_localhost_check.checked){
-            url = "http://localhost:" + custom_localhost_port.value +'?'
+            url = "http://localhost:" + custom_localhost_port.value +'/checkout?'
         }
         url += "merchant=" + merchant.value + "&";
         url += "total=" + order.total + "&";
