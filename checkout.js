@@ -59,9 +59,10 @@ function run() {
         console.print('Generated URL: \n ' + url + "_blank" ,`height=800,width=380,left=${left} \n`)
         var popup = window.open(url, "_blank" ,`height=800,width=380,left=${left}`);
         console.print('\nTesting',true);
+
         var timer = setInterval(function(){
             if(popup.closed){
-                console.print('\nPopup Closed.******************************************* \n')
+                console.print('\n\nPopup Closed.******************************************* \n')
                 clearInterval(timer);
             }else{
                 console.print(".",true)
