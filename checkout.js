@@ -15,6 +15,8 @@ var custom_url_check = document.getElementById('custom_url');
 var custom_localhost_check = document.getElementById('custom_local_check');
 var custom_localhost_port = document.getElementById('custom_local_port');
 
+var is_bnpl = document.getElementById('is_bnpl');
+
 var total = order.total;
 
 
@@ -54,6 +56,7 @@ function run() {
             url = prompt('Edit URL',url)
         }
         
+        if(is_bnpl.checked) url += "BNPL=true&";
         url += "hmac=" + signature;
         let left = window.innerWidth/2 - 190
         console.print('Generated URL: \n' + url + "_blank" ,`height=800,width=380,left=${left} \n`)
@@ -83,6 +86,7 @@ const sign = async (config,total,merchantId,date) => {
     
     if(crypto.subtle){
         try{
+            console.print('Using Secret: ' + config.secret);
             let key = await crypto.subtle.importKey(
                 'raw',
                 enc.encode(config.secret),
