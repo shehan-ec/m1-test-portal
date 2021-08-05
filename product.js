@@ -15,7 +15,7 @@ function addProduct(e) {
         id:data.get('id'),
         description: data.get('name'),
         quantity: data.get('qty'),
-        price: data.get('price')
+        purchasedPrice: data.get('price')
     });
 
     var totalVal = parseFloat(data.get('price')) * parseFloat(data.get('qty'));
