@@ -60,7 +60,7 @@ function run() {
         url += "hmac=" + signature;
         let left = window.innerWidth/2 - 190
         console.print('Generated URL: \n' + url + "_blank" ,`height=800,width=460,left=${left} \n`)
-        var popup = window.open(url, "_blank" ,`height=800,width=380,left=${left}`);
+        var popup = window.open(url, "_blank" ,`height=800,width=460,left=${left}`);
         console.print('\n\nTesting',true);
 
         var timer = setInterval(function(){

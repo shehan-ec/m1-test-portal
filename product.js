@@ -12,7 +12,7 @@ function addProduct(e) {
         throw new Error('PRODUCT_ID_MUST_BE_UNIQUE')
     }
     order.items[data.get('id')] = ({
-        id:data.get('id'),
+        itemId:data.get('id'),
         description: data.get('name'),
         quantity: data.get('qty'),
         purchasePrice: data.get('price')
