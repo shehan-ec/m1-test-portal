@@ -51,12 +51,13 @@ function run() {
         if(order.items){
             url += "items=" + encodeURIComponent(JSON.stringify(Object.values(order.items))) + "&";
         }
-        console.log(custom_url.checked)
+        
         if(custom_url_check.checked){
             url = prompt('Edit URL',url)
         }
         
-        if(is_bnpl.checked) url += "BNPL=true&";
+
+        if(is_bnpl.checked) url += "bnpl=true&";
         url += "hmac=" + signature;
         let left = window.innerWidth/2 - 190
         console.print('Generated URL: \n' + url + "_blank" ,`height=800,width=460,left=${left} \n`)
