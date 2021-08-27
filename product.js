@@ -13,9 +13,19 @@ function addProduct(e) {
     }
     order.items[data.get('id')] = ({
         itemId:data.get('id'),
-        description: data.get('name'),
+        itemName: data.get('name'),
         quantity: data.get('qty'),
-        purchasePrice: data.get('price')
+        purchasePrice: data.get('price'),
+        variants:[
+            {
+                property:data.get('v1'),
+                value: data.get('v2'),
+            },
+            {
+                property:data.get('v3'),
+                value: data.get('v4'),
+            }
+        ]
     });
 
     var totalVal = parseFloat(data.get('price')) * parseFloat(data.get('qty'));
